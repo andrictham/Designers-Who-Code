@@ -43,25 +43,6 @@ let getProfileInfo = function(handle) {
       description = Autolinker.link( description, {
         mention: 'twitter', // Process @ links into Twitter mention links
         hashtag: 'twitter', // Process # links into Twitter hashtag links
-        replaceFn: (match) => {
-          switch( match.getType() ) {
-            // If some part of the description matches URL, convert it to a vanilla link,
-            // with some styling borrowed from their Twitter profile
-            case 'url' :
-              let tag = match.buildTag()
-              tag.setAttr( 'style', `color: #${profile_background_color}` )
-              return tag
-            case 'email' :
-              let email = match.getEmail()
-              return `${email}`
-            // case 'mention' :
-            //   let mention = match.getMention()
-            //   return `@${mention}`
-            // case 'hashtag' :
-            //   let hashtag = match.getHashtag()
-            //   return `#${hashtag}`
-          }
-        }
       })
 
       // Replace t.co URLs with the actual URLs
@@ -72,7 +53,7 @@ let getProfileInfo = function(handle) {
         }
       }
 
-      console.log(name + "\n" + description + "\n \n ————————————— \n")
+      //console.log(name + "\n" + description + "\n \n ————————————— \n")
 
       // assemble object to be sent to Firebase
       let designerProfile = new Object();
@@ -81,6 +62,8 @@ let getProfileInfo = function(handle) {
       designerProfile.description = description
       designerProfile.imageUrl = imageUrl
       designerProfile.profileColor = profile_background_color
+
+      console.log(designerProfile)
 
       function writeToFirebase(handle, designerProfile) {
         admin.database().ref('display/' + handle).set({
