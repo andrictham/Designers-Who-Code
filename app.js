@@ -2,6 +2,7 @@ let dotenv = require('dotenv').config()
 let Twitter = require('twitter')
 let firebase = require('firebase')
 let admin = require('firebase-admin')
+let Autolinker = require('autolinker')
 
 const designers = require('./designers.json')
 
@@ -27,8 +28,43 @@ let firebaseServiceAccount = {
 let getProfileInfo = function(handle) {
   twitterClient.get('users/show', { 'screen_name': handle }, function (error, response) {
     if (!error) {
-      console.log(response)
-      // Do stuff here later!
+      //console.log(response)
+      let { name, screen_name, description, profile_image_url_https, location, profile_background_color, entities } = response
+      const handle = screen_name.toLowerCase()
+      const image_Url = profile_image_url_https.replace("_normal", "_400x400")
+      description = Autolinker.link( description, {
+        mention: 'twitter', // Process @ links into Twitter mention links
+        hashtag: 'twitter', // Process # links into Twitter hashtag links
+        replaceFn: (match) => {
+          switch( match.getType() ) {
+            // If some part of the description matches URL, convert it to a vanilla link,
+            // with some styling borrowed from their Twitter profile
+            case 'url' :
+              let tag = match.buildTag()
+              tag.setAttr( 'style', `color: #${profile_background_color}` )
+              return tag
+            case 'email' :
+              let email = match.getEmail()
+              return `${email}`
+            // case 'mention' :
+            //   let mention = match.getMention()
+            //   return `@${mention}`
+            // case 'hashtag' :
+            //   let hashtag = match.getHashtag()
+            //   return `#${hashtag}`
+          }
+        }
+      })
+
+      // Replace t.co URLs with the actual URLs
+      let descriptionUrls = entities.description.urls
+      if (descriptionUrls.length != 0) {
+        for (var i = 0; i < descriptionUrls.length; i++) {
+          description = description.replace(descriptionUrls[i].url, `${descriptionUrls[i].display_url}`)
+        }
+      }
+
+      console.log(name + "\n" + description + "\n \n ————————————— \n")
     }
   })
 }
