@@ -1,0 +1,36 @@
+[debug] [2017-06-09T06:47:05.738Z] ----------------------------------------------------------------------
+[debug] [2017-06-09T06:47:05.741Z] Command:      /Users/andric/.nvm/versions/node/v6.9.0/bin/node /Users/andric/.nvm/versions/node/v6.9.0/bin/firebase serve
+[debug] [2017-06-09T06:47:05.741Z] CLI Version:  3.9.1
+[debug] [2017-06-09T06:47:05.741Z] Platform:     darwin
+[debug] [2017-06-09T06:47:05.742Z] Node Version: v6.9.0
+[debug] [2017-06-09T06:47:05.742Z] Time:         Fri Jun 09 2017 14:47:05 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:05.742Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-06-09T06:47:05.753Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-06-09T06:47:05.754Z] > authorizing via signed-in user
+[debug] [2017-06-09T06:47:05.755Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-06-09T06:47:05.755Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/aXcAT3VWov4ucdHPXHfdNGLIVjSC6TzaGBon2QhV2wk',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Jun 09 2017 14:47:05 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:05.878Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-09T06:47:05.880Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/designers-who-code  
+ Fri Jun 09 2017 14:47:05 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:06.909Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-09T06:47:06.910Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/designers-who-code/tokens  
+ Fri Jun 09 2017 14:47:06 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:07.750Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/andric/Dropbox (Personal)/Playground/Sites/Designers Who Code'...
+[info] 
+[debug] [2017-06-09T06:47:07.755Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/designers-who-code  
+ Fri Jun 09 2017 14:47:07 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:08.917Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-09T06:47:08.918Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/376488763332/clients/_:getWebAppConfig  
+ Fri Jun 09 2017 14:47:08 GMT+0800 (+08)
+[debug] [2017-06-09T06:47:09.703Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-09T06:47:09.720Z] TypeError: Cannot read property 'public' of undefined
+[error] 
+[error] Error: An unexpected error has occurred.
