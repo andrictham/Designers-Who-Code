@@ -25,13 +25,21 @@ let firebaseServiceAccount = {
   "client_x509_cert_url": process.env.FIREBASE_CLIENT_CERT_URL
 }
 
+admin.initializeApp({
+  credential: admin.credential.cert(firebaseServiceAccount),
+  databaseURL: "https://designers-who-code.firebaseio.com"
+})
+
 let getProfileInfo = function(handle) {
   twitterClient.get('users/show', { 'screen_name': handle }, function (error, response) {
+
     if (!error) {
-      //console.log(response)
+
       let { name, screen_name, description, profile_image_url_https, location, profile_background_color, entities } = response
+
       const handle = screen_name.toLowerCase()
-      const image_Url = profile_image_url_https.replace("_normal", "_400x400")
+      const imageUrl = profile_image_url_https.replace("_normal", "_400x400")
+
       description = Autolinker.link( description, {
         mention: 'twitter', // Process @ links into Twitter mention links
         hashtag: 'twitter', // Process # links into Twitter hashtag links
@@ -65,6 +73,24 @@ let getProfileInfo = function(handle) {
       }
 
       console.log(name + "\n" + description + "\n \n ————————————— \n")
+
+      // assemble object to be sent to Firebase
+      let designerProfile = new Object();
+      designerProfile.name = name
+      designerProfile.handle = handle
+      designerProfile.description = description
+      designerProfile.imageUrl = imageUrl
+      designerProfile.profileColor = profile_background_color
+
+      function writeToFirebase(handle, designerProfile) {
+        admin.database().ref('display/' + handle).set({
+          designerProfile
+        })
+        console.log(`${handle} has been written to Firebase`)
+      }
+
+      writeToFirebase(handle, designerProfile)
+
     }
   })
 }
