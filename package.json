@@ -1,0 +1,24 @@
+{
+  "name": "designers-who-code",
+  "version": "1.0.0",
+  "description": "A Twitter directory for exploring digital product designers who speak the native language of our medium.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twitter",
+    "directory",
+    "design",
+    "ux",
+    "ui"
+  ],
+  "author": "Andric Tham",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "firebase": "^4.1.2",
+    "firebase-admin": "^5.0.0",
+    "twitter": "^1.7.0"
+  }
+}
