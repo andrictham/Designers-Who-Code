@@ -35,23 +35,23 @@ let getProfileInfo = function(handle) {
 
     if (!error) {
 
-      let { name, screen_name, description, profile_image_url_https, location, profile_background_color, entities } = response
+      let { name, screen_name, description, profile_image_url_https, location, profile_link_color, entities } = response
 
       const handle = screen_name.toLowerCase()
       const imageUrl = profile_image_url_https.replace("_normal", "_400x400")
-
-      description = Autolinker.link( description, {
-        mention: 'twitter', // Process @ links into Twitter mention links
-        hashtag: 'twitter', // Process # links into Twitter hashtag links
-      })
 
       // Replace t.co URLs with the actual URLs
       let descriptionUrls = entities.description.urls
       if (descriptionUrls.length != 0) {
         for (var i = 0; i < descriptionUrls.length; i++) {
-          description = description.replace(descriptionUrls[i].url, `${descriptionUrls[i].display_url}`)
+          description = description.replace(descriptionUrls[i].url, `${descriptionUrls[i].expanded_url}`)
         }
       }
+
+      description = Autolinker.link( description, {
+        mention: 'twitter', // Process @ links into Twitter mention links
+        hashtag: 'twitter' // Process # links into Twitter hashtag links
+      })
 
       //console.log(name + "\n" + description + "\n \n ————————————— \n")
 
@@ -61,7 +61,7 @@ let getProfileInfo = function(handle) {
       designerProfile.handle = handle
       designerProfile.description = description
       designerProfile.imageUrl = imageUrl
-      designerProfile.profileColor = profile_background_color
+      designerProfile.profileColor = profile_link_color
 
       console.log(designerProfile)
 
