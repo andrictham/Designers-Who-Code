@@ -26,9 +26,9 @@ a.button {
   background-color: #9B59B6;
   color: white;
   text-decoration: none;
-  -webkit-box-shadow: 0px 2px 30px -10px rgba(155,89,182,0.08);
-  -moz-box-shadow: 0px 2px 30px 10px rgba(155,89,182,0.08);
-  box-shadow: 0px 2px 30px 10px rgba(155,89,182,0.08);
+  -webkit-box-shadow: 0px 2px 30px -10px rgba(0,0,0,0.06);
+  -moz-box-shadow: 0px 2px 30px 10px rgba(0,0,0,0.06);
+  box-shadow: 0px 2px 30px 10px rgba(0,0,0,0.06);
   transition: ease-in-out 220ms;
 }
 

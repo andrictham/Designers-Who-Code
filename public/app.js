@@ -23,7 +23,7 @@ $(document).ready(function(){
         "<h3>" + designerProfile.name + "</h3>" +
         "<h5> @" + designerProfile.handle + "</h5>" +
         "<p>" + designerProfile.description + "</p>" +
-        "<a class='button' target='_blank' href='http://twitter.com/" + designerProfile.handle + "'> Go to Profile </a>" +
+        "<a class='button' style='background-color:#" + designerProfile.profileColor + ";' target='_blank' href='http://twitter.com/" + designerProfile.handle + "'> Go to Profile </a>" +
         "</div>"
       )
     })

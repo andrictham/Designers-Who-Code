@@ -50,7 +50,24 @@ let getProfileInfo = function(handle) {
 
       description = Autolinker.link( description, {
         mention: 'twitter', // Process @ links into Twitter mention links
-        hashtag: 'twitter' // Process # links into Twitter hashtag links
+        hashtag: 'twitter', // Process # links into Twitter hashtag links
+        replaceFn: match => {
+          switch( match.getType() ) {
+            case 'url':
+              const tag = match.buildTag()
+              tag.setAttr( 'style', `color: #${profile_link_color}`)
+              return tag
+            case 'mention':
+              const mention = match.getMention()
+              return `<a href="https://twitter.com/${mention}" target="_blank" style="color: #${profile_link_color}">@${mention}</a>`
+            case 'hashtag':
+              const hashtag = match.getHashtag()
+              return `<a href="https://twitter.com/hashtag/${hashtag}" target="_blank" style="color: #${profile_link_color}">#${hashtag}</a>`
+            case 'email':
+              const email = match.getEmail()
+              return `<a href="mailto: ${email}" target="_blank" style="color: #${profile_link_color}">${email}</a>`
+          }
+        }
       })
 
       //console.log(name + "\n" + description + "\n \n ————————————— \n")
