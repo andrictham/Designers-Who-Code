@@ -20,7 +20,7 @@ $(document).ready(function(){
       $("#profiles").append(
         "<div class='profile'>" +
         "<img src ='" + designerProfile.imageUrl + "' width='100' />" +
-        "<h3>" + designerProfile.name + "</h3>" +
+        "<h3 style='color:#" + designerProfile.profileColor + "; '>" + designerProfile.name + "</h3>" +
         "<h5> @" + designerProfile.handle + "</h5>" +
         "<p>" + designerProfile.description + "</p>" +
         "<a class='button' style='background-color:#" + designerProfile.profileColor + ";' target='_blank' href='http://twitter.com/" + designerProfile.handle + "'> Go to Profile </a>" +
